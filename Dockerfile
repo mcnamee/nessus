@@ -10,8 +10,8 @@ RUN echo '--- Init ---' && \
 
 RUN echo '--- Install Nessus ---' && \
     VERSION="10.5.0" && \
-    ARCH=$( arch | sed s/x86_64/amd64/ ) && \
-    FILENAME="Nessus-${VERSION}-ubuntu1804_${ARCH}.deb" && \
+    ARCH=$( arch | sed s/aarch64/ubuntu1804_aarch64/ | sed s/x86_64/ubuntu1404_amd64/ ) && \
+    FILENAME="Nessus-${VERSION}-${ARCH}.deb" && \
     curl -v -k \
         --url https://www.tenable.com/downloads/api/v2/pages/nessus/files/$FILENAME \
         --output $FILENAME && \
