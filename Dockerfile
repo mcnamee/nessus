@@ -9,11 +9,12 @@ RUN echo '--- Init ---' && \
       expect
 
 RUN echo '--- Install Nessus ---' && \
-    DL_LINK="https://www.tenable.com/downloads/nessus?loginAttempted=true"
-    VERSION=$( curl -s GET $DL_LINK > /dev/null | grep 'Nessus-' | sed -e 's/.*Nessus-\(.*\)-ubuntu1804_aarch64\.deb.*/\1/' ) && \
+    DL_LINK="https://www.tenable.com/downloads/nessus?loginAttempted=true" && \
+    curl -L -k -s GET $DL_LINK > /tmp/tenable.txt && \
+    VERSION=$( cat /tmp/tenable.txt | grep 'Nessus-' | sed -e 's/.*Nessus-\(.*\)-ubuntu1804_aarch64\.deb.*/\1/' ) && \
     ARCH=$( arch | sed s/aarch64/ubuntu1804_aarch64/ | sed s/x86_64/ubuntu1404_amd64/ ) && \
     FILENAME="Nessus-${VERSION}-${ARCH}.deb" && \
-    curl -v -k \
+    curl -L -k \
         --url https://www.tenable.com/downloads/api/v2/pages/nessus/files/$FILENAME \
         --output $FILENAME && \
     dpkg -i ${FILENAME} && \
