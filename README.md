@@ -2,9 +2,9 @@
 
 A Github Action to:
 
-- Clone [https://github.com/tenableofficial/nessus](tenableofficial/nessus)
+- Clone [tenableofficial/nessus](https://github.com/tenableofficial/nessus)
 - Build the Docker images
-- Push to Docker Hub [https://hub.docker.com/r/mcnamee/nessus](mcnamee/nessus)
+- Push to Docker Hub [mcnamee/nessus](https://hub.docker.com/r/mcnamee/nessus)
 
 ## Manually running the Dockerfile
 
